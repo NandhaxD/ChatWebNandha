@@ -51,28 +51,43 @@ async function scrapeData(prompt) {
   }
 }
 
+function onLoading() {
+    let loadingBox = document.createElement('div');
+    loadingBox.setAttribute('id', 'loading-circle');
+    userInput.replaceWith(loadingBox);
+}
+
+function offLoading() {
+    let button = document.createElement('button');
+    button.textContent = 'Send';
+    button.onclick = sendMessage;
+    userInput.replaceWith(button);
+}
+
 // Function to send a message
 async function sendMessage() {
   // Create a new message element
   let newMessage = document.createElement('li');
-  
   let prompt = userInput.value;
+  
   if (prompt === '') {
     alert('Please enter something to ask!');
     return;
+    
   } else {
     // Create a new message
     let messageText = document.createElement('p');
     messageText.textContent = prompt;
     messageText.setAttribute('id', 'user-prompt'); 
     newMessage.appendChild(messageText);
+    onLoading() 
     let systemText = await scrapeData(prompt);
     messageText = document.createElement('p');
     messageText.textContent = systemText;
     messageText.setAttribute('id', 'system-prompt'); 
     newMessage.appendChild(messageText);
-
     chatBox.children[0].appendChild(newMessage);
+    offLoading()
     userInput.value = '';
   }
 }
