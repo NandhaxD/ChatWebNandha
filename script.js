@@ -1,3 +1,11 @@
+
+document.addEventListener("contextmenu", function(event) {
+  event.preventDefault();
+  alert("Inspect Elements Not Allowed");
+}); // block inspecting the elements
+
+
+
 // Get the chat log and user input elements
 var chatBox = document.getElementById('chatLog');
 var userInput = document.getElementById('userInput');
