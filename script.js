@@ -1,7 +1,6 @@
-
-
 const axios = require('axios');
-
+var chatBox = document.getElementById('chatLog');
+var userInput = document.getElementById('userInput');
 
 // Define the function
 async function scrapeData(prompt) {
@@ -46,6 +45,29 @@ async function scrapeData(prompt) {
   }
 }
 
+async function sendMessage() {
+  // Create a new message element
+  let newMessage = document.createElement('li');
+  
+  let prompt = userInput.value;
+  if (prompt === '') {
+    alert('Please enter something to ask!');
+    return;
+  } else {
+    // Create a new message text element for the user's prompt
+    let messageText = document.createElement('p');
+    messageText.textContent = prompt;
+    messageText.setAttribute('id', 'user-prompt'); 
+    newMessage.appendChild(messageText);
 
+    // Scrape data from the API
+    let systemText = await scrapeData(prompt);
+    messageText = document.createElement('p');
+    messageText.textContent = systemText;
+    messageText.setAttribute('id', 'system-prompt'); 
+    newMessage.appendChild(messageText);
 
-
+    // Append the new message to the chat log
+    chatBox.children[0].appendChild(newMessage);
+    userInput.value = '';
+  }
