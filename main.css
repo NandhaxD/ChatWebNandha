@@ -37,9 +37,9 @@ body {
     border: 1px solid #ccc;
     padding: 20px;
     margin-bottom: 10px;
+    border-radius: 8px;
     
 }
-
 
 #chatLog ol li p#system-prompt {
   animation: write-text 2s forwards;
