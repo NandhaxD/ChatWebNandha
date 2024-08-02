@@ -9,6 +9,7 @@ document.addEventListener("contextmenu", function(event) {
 // Get the chat log and user input elements
 var chatBox = document.getElementById('chatLog');
 var userInput = document.getElementById('userInput');
+var sendBtn = document.getElementById('sendbtn');
 
 // Function to scrape data from the API
 async function scrapeData(prompt) {
@@ -54,13 +55,14 @@ async function scrapeData(prompt) {
 function onLoading() {
     let loadingBox = document.createElement('div');
     loadingBox.setAttribute('id', 'loading-circle');
-    userInput.replaceWith(loadingBox);
+    sendBtn.replaceWith(loadingBox);
 }
 
 function offLoading() {
     let button = document.createElement('button');
+    button.setAttribute('id', 'sendbtn');
     button.textContent = 'Send';
-    button.onclick = sendMessage;
+    button.onclick = 'sendMessage()';
     userInput.replaceWith(button);
 }
 
@@ -86,8 +88,8 @@ async function sendMessage() {
     messageText.textContent = systemText;
     messageText.setAttribute('id', 'system-prompt'); 
     newMessage.appendChild(messageText);
-    chatBox.children[0].appendChild(newMessage);
     offLoading()
+    chatBox.children[0].appendChild(newMessage);
     userInput.value = '';
   }
 }
