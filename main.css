@@ -46,6 +46,7 @@ body {
   word-wrap: break-word;
   overflow: hidden;
   transform: scaleX(0);
+
 }
 
 @keyframes write-text {
@@ -65,12 +66,17 @@ body {
 #system-prompt {
   color: red;
   background-color: white;
-  padding: 4px: 
+  border-radius: 5px;
+  padding: 6%;
 }
 
 #user-prompt {
-  color: blue;
+   color: blue;
+  background-color: white;
+  border-radius: 5px;
+  padding: 6%;
 }
+
 
 input[type="text"] {
     width: 50%;
