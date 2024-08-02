@@ -1,4 +1,7 @@
 
+
+
+
 document.addEventListener("contextmenu", function(event) {
   event.preventDefault();
   alert("Inspect Elements Not Allowed");
@@ -6,10 +9,10 @@ document.addEventListener("contextmenu", function(event) {
 
 
 
+
 // Get the chat log and user input elements
 var chatBox = document.getElementById('chatLog');
 var userInput = document.getElementById('userInput');
-var sendBtn = document.getElementById('sendbtn');
 
 // Function to scrape data from the API
 async function scrapeData(prompt) {
@@ -53,17 +56,20 @@ async function scrapeData(prompt) {
 }
 
 function onLoading() {
+    let sendBtn = document.getElementById('sendbtn');
+
     let loadingBox = document.createElement('div');
     loadingBox.setAttribute('id', 'loading-circle');
     sendBtn.replaceWith(loadingBox);
 }
 
 function offLoading() {
+    var loadingCircle = document.getElementById('loading-circle');
     let button = document.createElement('button');
     button.setAttribute('id', 'sendbtn');
     button.textContent = 'Send';
-    button.onclick = 'sendMessage()';
-    userInput.replaceWith(button);
+    button.onclick = sendMessage; // Note the absence of parentheses and quotes
+    loadingCircle.replaceWith(button);
 }
 
 // Function to send a message
