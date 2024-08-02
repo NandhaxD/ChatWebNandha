@@ -1,7 +1,8 @@
-const axios = require('axios');
+// Get the chat log and user input elements
 var chatBox = document.getElementById('chatLog');
 var userInput = document.getElementById('userInput');
 
+// Function to scrape data from the API
 async function scrapeData(prompt) {
   const url = "https://api.binjie.fun/api/generateStream";
   const headers = {
@@ -42,6 +43,7 @@ async function scrapeData(prompt) {
   }
 }
 
+// Function to send a message
 async function sendMessage() {
   // Create a new message element
   let newMessage = document.createElement('li');
@@ -51,7 +53,7 @@ async function sendMessage() {
     alert('Please enter something to ask!');
     return;
   } else {
-    // Create a new mess
+    // Create a new message
     let messageText = document.createElement('p');
     messageText.textContent = prompt;
     messageText.setAttribute('id', 'user-prompt'); 
@@ -65,3 +67,4 @@ async function sendMessage() {
     chatBox.children[0].appendChild(newMessage);
     userInput.value = '';
   }
+}
