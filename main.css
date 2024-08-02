@@ -11,7 +11,7 @@ body {
 
 .chat-container {
     max-width: 400px;
-    margin: 50px auto;
+    margin: 10px auto;
     padding: 20px;
     background-color: none;
     border-radius: 5px;
@@ -41,13 +41,31 @@ body {
 }
 
 
-div ol {
-   background-color: white;
-  
+#chatLog ol li p#system-prompt {
+  animation: write-text 2s forwards;
+  word-wrap: break-word;
+  overflow: hidden;
+  transform: scaleX(0);
 }
+
+@keyframes write-text {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+
+
+
+
 
 #system-prompt {
   color: red;
+  background-color: white;
+  padding: 20px: 
 }
 
 #user-prompt {
